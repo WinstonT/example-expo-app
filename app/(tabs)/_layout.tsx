@@ -1,55 +1,21 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
-
+import { Tabs } from 'expo-router';
+import React from 'react';
 import Colors from '../../constants/Colors';
+import { Feather } from '@expo/vector-icons'; 
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
+export default function Layout() {
+	return (
+    <Tabs 
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
+        tabBarActiveTintColor: Colors.primary,
+        tabBarLabelStyle: {
+          fontWeight: '700',
+        },
+      }}
+    >
+      <Tabs.Screen name="index" options={{ tabBarLabel: 'Explore', title: 'Explore', tabBarIcon: ({ color, size}) => <Feather name='search' size={size} color={color} /> }} />
+      <Tabs.Screen name="favourites" options={{ tabBarLabel: 'Favourites', title: 'Favourites', tabBarIcon: ({ color, size}) => <Feather name='heart' size={size} color={color} /> }} />
+      <Tabs.Screen name="profile" options={{ tabBarLabel: 'Profile', title: 'Profile', tabBarIcon: ({ color, size}) => <Feather name='user' size={size} color={color} /> }} />
     </Tabs>
   );
 }
