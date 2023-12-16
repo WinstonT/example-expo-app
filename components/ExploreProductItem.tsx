@@ -8,7 +8,6 @@ import { FontAwesome } from "@expo/vector-icons";
 
 interface ExploreProductItemProps {
   product: Product;
-  index: number;
 }
 
 const styles = StyleSheet.create({
@@ -66,16 +65,20 @@ const styles = StyleSheet.create({
 
 export default function ExploreProductItem({
   product,
-  index,
 }: ExploreProductItemProps) {
+  const {
+    title,
+    image,
+    rating: { rate, count },
+  } = product;
   const price = parseFloat(product.price).toFixed(2);
 
   return (
     <TouchableOpacity style={styles.container}>
-      <View style={[styles.imageContainer, index > 0 && {}]}>
+      <View style={[styles.imageContainer]}>
         <Image
           resizeMode="center"
-          source={{ uri: product.image }}
+          source={{ uri: image }}
           height={52}
           width={52}
         />
@@ -83,19 +86,17 @@ export default function ExploreProductItem({
       <View style={styles.textContainer}>
         <View style={styles.informationContainer}>
           <Text numberOfLines={1} style={styles.title}>
-            {product.title}
+            {title}
           </Text>
           <View style={styles.ratingContainer}>
-            <Text style={styles.rating}>{product.rating.rate}</Text>
+            <Text style={styles.rating}>{rate}</Text>
             <FontAwesome
               name="star"
               size={12}
               style={styles.star}
               color={Colors.grey}
             />
-            <Text
-              style={styles.count}
-            >{`| ${product.rating.count} reviews`}</Text>
+            <Text style={styles.count}>{`| ${count} reviews`}</Text>
           </View>
         </View>
         <Text style={styles.price}>{`$${price}`}</Text>

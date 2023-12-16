@@ -71,8 +71,8 @@ export default function ExploreScreen() {
     setFilteredData(products);
   };
 
-  const renderItem: ListRenderItem<Product> = ({ item: product, index }) => (
-    <ExploreProductItem product={product} index={index} key={product.id} />
+  const renderItem: ListRenderItem<Product> = ({ item: product }) => (
+    <ExploreProductItem product={product} key={product.id} />
   );
 
   return (
