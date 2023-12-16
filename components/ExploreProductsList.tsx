@@ -32,7 +32,7 @@ export default function ExploreProductsList() {
       data={data}
       renderItem={renderItem}
       style={styles.list}
-      endFillColor={Colors.primary}
+      overScrollMode="never"
     />
   );
 }
