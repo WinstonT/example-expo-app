@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     borderColor: Colors.grey,
     borderWidth: 1,
     borderRadius: 12,
-    margin: 10,
+    marginVertical: 10,
+    marginHorizontal: 12,
     paddingHorizontal: 8,
     alignItems: "center",
   },
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     padding: 8,
+    color: Colors.grey,
   },
 });
 
@@ -33,6 +35,7 @@ export default function ExploreHeader() {
           style={styles.inputBar}
           placeholder="Search"
           placeholderTextColor={Colors.grey}
+          cursorColor={Colors.grey}
         />
       </View>
     </SafeAreaView>
