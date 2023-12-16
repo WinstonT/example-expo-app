@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Learn more about Light and Dark modes:
  * https://docs.expo.io/guides/color-schemes/
@@ -8,6 +9,7 @@ import {
   useColorScheme,
   View as DefaultView,
 } from "react-native";
+import React from "react";
 
 import Colors from "../constants/Colors";
 

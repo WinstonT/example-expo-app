@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import Colors from "../constants/Colors";
 import { Feather } from "@expo/vector-icons";
@@ -26,16 +26,27 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ExploreHeader() {
+interface ExploreHeaderProps {
+  query: string;
+  setQuery: (value: string) => void;
+}
+
+export default function ExploreHeader({ setQuery, query }: ExploreHeaderProps) {
+  const onChangeText = useCallback(() => {
+    setQuery(query);
+  }, []);
+
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
         <Feather name="search" color={Colors.grey} size={12} />
         <TextInput
+          value={query}
           style={styles.inputBar}
           placeholder="Search"
           placeholderTextColor={Colors.grey}
           cursorColor={Colors.grey}
+          onChangeText={onChangeText}
         />
       </View>
     </SafeAreaView>

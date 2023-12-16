@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     paddingVertical: 20,
     paddingHorizontal: 20,
+    margin: 12,
     flexDirection: "row",
   },
   textContainer: {
@@ -68,8 +69,6 @@ export default function ExploreProductItem({
   index,
 }: ExploreProductItemProps) {
   const price = parseFloat(product.price).toFixed(2);
-
-  console.log(product);
 
   return (
     <TouchableOpacity style={styles.container}>
