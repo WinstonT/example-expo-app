@@ -16,6 +16,7 @@ export default function Layout() {
       <Tabs.Screen
         name="index"
         options={{
+          headerShown: false,
           tabBarLabel: "Explore",
           title: "Explore",
           tabBarIcon: ({ color, size }) => (

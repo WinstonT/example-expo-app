@@ -13,21 +13,27 @@ import Constants from "../../constants/Constants";
 import Product from "../../types/Product";
 import Colors from "../../constants/Colors";
 import { Feather } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
+import Category from "../../types/Category";
+import ProductCategoryItem from "../../components/ProductCategoryItem";
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
   },
   header: {
-    flex: 1,
     backgroundColor: Colors.white,
+  },
+  filterBarContainer: {
+    gap: 8,
+    padding: 12,
   },
   searchBarContainer: {
     flexDirection: "row",
     borderColor: Colors.grey,
     borderWidth: 1,
     borderRadius: 12,
-    marginVertical: 10,
+    marginTop: 12,
     marginHorizontal: 12,
     paddingHorizontal: 8,
     alignItems: "center",
@@ -46,11 +52,16 @@ const styles = StyleSheet.create({
 
 export default function ExploreScreen() {
   const [data, setData] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
 
   useEffect(() => {
     getProductsData();
+    getProductsCategories();
   }, []);
 
   const getProductsData = () => {
@@ -63,30 +74,60 @@ export default function ExploreScreen() {
       .catch((error) => console.log(error));
   };
 
-  const filterProducts = (value: string) => {
-    const products = data.filter((product) =>
-      product.title.toLowerCase().includes(value.toLowerCase())
-    );
+  const getProductsCategories = () => {
+    axios
+      .get(`${Constants.baseUrl}/products/categories`)
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const filterProductsByQuery = (value: string) => {
     setQuery(value);
-    setFilteredData(products);
+    setFilteredData(
+      data.filter((product) => product.title.toLowerCase().includes(value))
+    );
   };
 
   const renderItem: ListRenderItem<Product> = ({ item: product }) => (
     <ExploreProductItem product={product} key={product.id} />
   );
 
+  console.log(selectedCategory);
+
   return (
     <SafeAreaView style={styles.root}>
-      <View style={styles.searchBarContainer}>
-        <Feather name="search" color={Colors.grey} size={12} />
-        <TextInput
-          value={query}
-          style={styles.searchBar}
-          placeholder="Search"
-          placeholderTextColor={Colors.grey}
-          cursorColor={Colors.grey}
-          onChangeText={(value) => filterProducts(value)}
-        />
+      <View style={styles.header}>
+        <View style={styles.searchBarContainer}>
+          <Feather name="search" color={Colors.grey} size={12} />
+          <TextInput
+            value={query}
+            style={styles.searchBar}
+            placeholder="Search"
+            placeholderTextColor={Colors.grey}
+            cursorColor={Colors.grey}
+            onChangeText={(value) => filterProductsByQuery(value)}
+          />
+        </View>
+        <ScrollView
+          horizontal={true}
+          overScrollMode="never"
+          contentContainerStyle={styles.filterBarContainer}
+        >
+          {categories.map((category) => {
+            return (
+              <ProductCategoryItem
+                data={data}
+                setFilteredData={setFilteredData}
+                category={category}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                key={category}
+              />
+            );
+          })}
+        </ScrollView>
       </View>
       <FlatList
         data={filteredData}
