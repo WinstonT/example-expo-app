@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Text, View } from "./Themed";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import Product from "../types/Product";
 import Colors from "../constants/Colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
+import ProductDetailsModal from "./ProductDetailsModal";
 
 interface ExploreProductItemProps {
   product: Product;
@@ -73,34 +73,47 @@ export default function ExploreProductItem({
   } = product;
   const price = parseFloat(product.price).toFixed(2);
 
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const onPress = useCallback(() => {
+    setModalVisible(!isModalVisible);
+  }, [isModalVisible]);
+
   return (
-    <TouchableOpacity style={styles.container}>
-      <View style={[styles.imageContainer]}>
-        <Image
-          resizeMode="center"
-          source={{ uri: image }}
-          height={52}
-          width={52}
-        />
-      </View>
-      <View style={styles.textContainer}>
-        <View style={styles.informationContainer}>
-          <Text numberOfLines={1} style={styles.title}>
-            {title}
-          </Text>
-          <View style={styles.ratingContainer}>
-            <Text style={styles.rating}>{rate}</Text>
-            <FontAwesome
-              name="star"
-              size={12}
-              style={styles.star}
-              color={Colors.grey}
-            />
-            <Text style={styles.count}>{`| ${count} reviews`}</Text>
-          </View>
+    <>
+      <TouchableOpacity style={styles.container} onPress={onPress}>
+        <View style={[styles.imageContainer]}>
+          <Image
+            resizeMode="center"
+            source={{ uri: image }}
+            height={52}
+            width={52}
+          />
         </View>
-        <Text style={styles.price}>{`$${price}`}</Text>
-      </View>
-    </TouchableOpacity>
+        <View style={styles.textContainer}>
+          <View style={styles.informationContainer}>
+            <Text numberOfLines={1} style={styles.title}>
+              {title}
+            </Text>
+            <View style={styles.ratingContainer}>
+              <Text style={styles.rating}>{rate}</Text>
+              <FontAwesome
+                name="star"
+                size={12}
+                style={styles.star}
+                color={Colors.grey}
+              />
+              <Text style={styles.count}>{`| ${count} reviews`}</Text>
+            </View>
+          </View>
+          <Text style={styles.price}>{`$${price}`}</Text>
+        </View>
+      </TouchableOpacity>
+      <ProductDetailsModal
+        isVisible={isModalVisible}
+        product={product}
+        setVisible={setModalVisible}
+      />
+    </>
   );
 }

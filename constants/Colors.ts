@@ -21,4 +21,5 @@ export default {
   white: '#FFF',
   black: '#000',
   grey: '#A9A9A9',
+  paper: '#EFEFEF',
 };

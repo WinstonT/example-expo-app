@@ -94,8 +94,6 @@ export default function ExploreScreen() {
     <ExploreProductItem product={product} key={product.id} />
   );
 
-  console.log(selectedCategory);
-
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.header}>

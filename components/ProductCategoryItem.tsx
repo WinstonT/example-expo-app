@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 import { Text } from "./Themed";
 import Category from "../types/Category";
-import { StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../constants/Colors";
 import Product from "../types/Product";
 
