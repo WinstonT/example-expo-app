@@ -11,12 +11,12 @@ export default function Layout() {
         tabBarLabelStyle: {
           fontWeight: "700",
         },
+        headerShown: false,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          headerShown: false,
           tabBarLabel: "Explore",
           title: "Explore",
           tabBarIcon: ({ color, size }) => (
@@ -25,12 +25,12 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="favourites"
+        name="cart"
         options={{
-          tabBarLabel: "Favourites",
-          title: "Favourites",
+          tabBarLabel: "Cart",
+          title: "Cart",
           tabBarIcon: ({ color, size }) => (
-            <Feather name="heart" size={size} color={color} />
+            <Feather name="shopping-cart" size={size} color={color} />
           ),
         }}
       />

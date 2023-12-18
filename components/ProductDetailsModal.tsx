@@ -4,6 +4,7 @@ import {
   Modal,
   ScrollView,
   StyleSheet,
+  ToastAndroid,
   TouchableOpacity,
 } from "react-native";
 import Product from "../types/Product";
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   button: {
-    borderRadius: 24,
+    borderRadius: 28,
     paddingVertical: 16,
     marginTop: 8,
     marginBottom: 12,
@@ -127,6 +128,10 @@ export default function ProductDetailsModal({
   const onHideModal = useCallback(() => {
     setVisible(false);
   }, [setVisible]);
+
+  const onAddToCart = useCallback(() => {
+    ToastAndroid.show("Added to cart", ToastAndroid.SHORT);
+  }, []);
 
   return (
     <Modal presentationStyle="fullScreen" visible={isVisible}>
@@ -166,8 +171,8 @@ export default function ProductDetailsModal({
             </View>
             <Text style={styles.description}>{description}</Text>
           </ScrollView>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonLabel}>BUY</Text>
+          <TouchableOpacity style={styles.button} onPress={onAddToCart}>
+            <Text style={styles.buttonLabel}>ADD TO CART</Text>
           </TouchableOpacity>
         </View>
       </View>
