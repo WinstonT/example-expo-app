@@ -70,7 +70,6 @@ interface CartProduct {
 export default function CartScreen() {
   const [cart, setCart] = useState<Cart>();
   const [products, setProducts] = useState<Product[]>([]);
-
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {

@@ -50,6 +50,8 @@ const styles = StyleSheet.create({
   },
   quantity: {
     fontWeight: "700",
+    width: 32,
+    textAlign: "center",
   },
   price: {
     fontWeight: "700",
@@ -124,14 +126,14 @@ export default function CartItem({
           <View style={styles.quantitySelectContainer}>
             <TouchableOpacity
               onPress={decreaseQuantity}
-              style={[styles.quantitySelectButton, { marginRight: 12 }]}
+              style={styles.quantitySelectButton}
             >
               <Feather name="minus" color={Colors.white} />
             </TouchableOpacity>
             <Text style={styles.quantity}>{quantity}</Text>
             <TouchableOpacity
               onPress={increaseQuantity}
-              style={[styles.quantitySelectButton, { marginLeft: 12 }]}
+              style={styles.quantitySelectButton}
             >
               <Feather name="plus" color={Colors.white} />
             </TouchableOpacity>
