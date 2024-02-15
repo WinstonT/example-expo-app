@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { Text, View } from "./Themed";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import Product from "../types/Product";
-import Colors from "../constants/Colors";
+import Product from "../../types/Product";
+import Colors from "../../constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import ProductDetailsModal from "./ProductDetailsModal";
 

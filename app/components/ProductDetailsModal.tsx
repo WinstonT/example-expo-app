@@ -7,10 +7,10 @@ import {
   ToastAndroid,
   TouchableOpacity,
 } from "react-native";
-import Product from "../types/Product";
+import Product from "../../types/Product";
 import { View, Text } from "./Themed";
 import { Feather, FontAwesome } from "@expo/vector-icons";
-import Colors from "../constants/Colors";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
   root: {

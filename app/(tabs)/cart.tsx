@@ -4,8 +4,8 @@ import Constants from "../../constants/Constants";
 import Product from "../../types/Product";
 import Cart from "../../types/Cart";
 import { FlatList, ListRenderItem, StyleSheet } from "react-native";
-import CartItem from "../../components/CartItem";
-import { Text, View } from "../../components/Themed";
+import CartItem from "../components/CartItem";
+import { Text, View } from "../components/Themed";
 import Colors from "../../constants/Colors";
 import { TouchableOpacity } from "react-native";
 

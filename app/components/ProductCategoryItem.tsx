@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 import { Text } from "./Themed";
-import Category from "../types/Category";
+import Category from "../../types/Category";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import Colors from "../constants/Colors";
-import Product from "../types/Product";
+import Colors from "../../constants/Colors";
+import Product from "../../types/Product";
 
 const styles = StyleSheet.create({
   container: {

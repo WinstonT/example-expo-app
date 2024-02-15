@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   ToastAndroid,
 } from "react-native";
-import Product from "../types/Product";
-import Cart from "../types/Cart";
-import Colors from "../constants/Colors";
+import Product from "../../types/Product";
+import Cart from "../../types/Cart";
+import Colors from "../../constants/Colors";
 import moment from "moment";
 import { Feather } from "@expo/vector-icons";
 

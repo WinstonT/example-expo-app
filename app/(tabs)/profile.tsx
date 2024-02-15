@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "../../components/Themed";
+import { Text, View } from "../components/Themed";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../../constants/Colors";
 import { AntDesign } from "@expo/vector-icons";

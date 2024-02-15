@@ -8,14 +8,14 @@ import {
   View,
 } from "react-native";
 import axios from "axios";
-import ExploreProductItem from "../../components/ExploreProductItem";
+import ExploreProductItem from "../components/ExploreProductItem";
 import Constants from "../../constants/Constants";
 import Product from "../../types/Product";
 import Colors from "../../constants/Colors";
 import { Feather } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import Category from "../../types/Category";
-import ProductCategoryItem from "../../components/ProductCategoryItem";
+import ProductCategoryItem from "../components/ProductCategoryItem";
 
 const styles = StyleSheet.create({
   root: {
